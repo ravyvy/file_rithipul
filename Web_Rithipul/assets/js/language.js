@@ -13,8 +13,8 @@ const apiMap = {
   // achievement: "http://localhost:1000/api/achievement/getlist",
   plans: "http://localhost:1000/api/newplan/getlist",
   teams: "http://localhost:1000/api/team/getlist",
-  home:"http://localhost:1000/api/homepage/getlist",
-  about:"http://localhost:1000/api/about/getlist"
+  home: "http://localhost:1000/api/homepage/getlist",
+  about: "http://localhost:1000/api/about/getlist"
 };
 // ==================================
 // Language Switch Function
@@ -335,27 +335,41 @@ function renderTeam(teams) {
     /* ================= TEAM ================= */
     if (item.type === "team" && teamRow) {
       card = `
-        <div class="col-md-3 d-flex justify-content-center" data-aos="zoom-in" data-aos-delay="100">
-          <div class="organization-card-team-all text-center border rounded shadow-sm" style="max-width:300px;">
-            <img src="${item.image_url}" class="img-fluid w-100" style="object-fit:cover;">
-            <div class="p-3">
-              <h5 class="fw-bold mb-1"
-                  data-en="${item.full_name}"
-                  data-kh="${item.full_name_kh}">
-                ${name}
-              </h5>
-              <p class="text-muted mb-2"
-                 data-en="${item.position_name}"
-                 data-kh="${item.position_kh}">
-                ${position}
-              </p>
-              <div class="d-flex justify-content-center gap-2">
-                <a href="${item.facebook_link}"><i class="bi bi-facebook"></i></a>
-                <a href="${item.linkedin_link}"><i class="bi bi-linkedin"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
+       <div class="col-md-3 d-flex justify-content-center"
+     data-aos="zoom-in"
+     data-aos-delay="100">
+
+  <div class="organization-card-team-all text-center border rounded shadow-sm w-100"
+       style="max-width:300px;">
+
+    <img src="${item.image_url}" class="team-img w-100">
+
+    <div class="p-3">
+      <h5 class="fw-bold mb-1"
+          data-en="${item.full_name}"
+          data-kh="${item.full_name_kh}">
+        ${name}
+      </h5>
+
+      <p class="text-muted mb-2"
+         data-en="${item.position_name}"
+         data-kh="${item.position_kh}">
+        ${position}
+      </p>
+
+      <div class="d-flex justify-content-center gap-3">
+        <a href="${item.facebook_link}" target="_blank">
+          <i class="bi bi-facebook"></i>
+        </a>
+        <a href="${item.linkedin_link}" target="_blank">
+          <i class="bi bi-linkedin"></i>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
       `;
       teamRow.insertAdjacentHTML("beforeend", card);
     }
@@ -363,27 +377,37 @@ function renderTeam(teams) {
     /* ================= HIDDEN TEAM ================= */
     if (item.type === "hidden" && hiddenRow) {
       card = `
-        <div class="col-md-3 d-flex justify-content-center" data-aos="zoom-in" data-aos-delay="100">
-          <div class="organization-card-team-all text-center border rounded shadow-sm" style="max-width:300px;">
-            <img src="${item.image_url || ''}" class="img-fluid w-100" style="object-fit:cover;">
-            <div class="p-3">
-              <h5 class="fw-bold mb-1"
-                  data-en="${item.full_name}"
-                  data-kh="${item.full_name_kh}">
-                ${name}
-              </h5>
-              <p class="text-muted mb-2"
-                 data-en="${item.position_name}"
-                 data-kh="${item.position_kh}">
-                ${position}
-              </p>
-              <div class="d-flex justify-content-center gap-2">
-                <a href="${item.facebook_link}"><i class="bi bi-facebook"></i></a>
-                <a href="${item.linkedin_link}"><i class="bi bi-linkedin"></i></a>
-              </div>
+      <div class="col-12 col-sm-6 col-md-3 d-flex justify-content-center"
+     data-aos="zoom-in"
+     data-aos-delay="100">
+
+  <div class="organization-card-team-all text-center border rounded shadow-sm w-100"
+       style="max-width:300px;">
+
+    <img src="${item.image_url || 'assets/img/default.png'}"
+         class="team-img w-100">
+
+    <div class="p-3">
+      <h5 class="fw-bold mb-1"
+          data-en="${item.full_name}"
+          data-kh="${item.full_name_kh}">
+        ${name}
+      </h5>
+
+      <p class="text-muted mb-2"
+         data-en="${item.position_name}"
+         data-kh="${item.position_kh}">
+        ${position}
+      </p>
+
+      <div class="d-flex justify-content-center gap-2 mb-3">
+              <a href="${item.facebook_link}"><i class="bi bi-facebook"></i></a>
+              <a href="${item.linkedin_link}"><i class="bi bi-linkedin"></i></a>
             </div>
-          </div>
-        </div>
+    </div>
+  </div>
+</div>
+
       `;
       hiddenRow.insertAdjacentHTML("beforeend", card);
     }
@@ -674,8 +698,13 @@ function renderAbout(about) {
     /* ================= BRAND ================= */
     if (item.type === "brand" && imglogo) {
       card = `
-        <img src="${item.img_brand}" class="img-fluid mx-auto d-block"
-             alt="Supporters Partners Clients">
+       <div class="text-center">
+          <img src="${item.img_brand || ''}"
+       class="img-fluid"
+       style="height:400px;"
+       alt="${item.brand_name || 'Partner logo'}">
+          </div>
+
       `;
       imglogo.insertAdjacentHTML("beforeend", card);
     }
