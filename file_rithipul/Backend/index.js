@@ -10,6 +10,9 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.get('/', (req, res) => {
+    res.send('Server is running successfully!');
+});
 // home page
 const serviceRouter = require("./router/services.router");
 serviceRouter(app);
